@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Home
+{% endblock title %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Welcome, {{ request.user.username }}!</h1>
+            <p>This is your home page. You can create and manage your recipes here.</p>
+            <a href="{% url 'create_recipe' %}" class="btn btn-primary">Create New Recipe</a>
+            <a href="{% url 'user_recipes' %}" class="btn btn-outline-primary">Your Recipes</a>
+        </div>
+    </div>
+    <!--
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h2>What we Like</h2>
+            <div class="list-group">
+                {% if recipes %}
+                    {% for recipe in recipes %}
+                        
+                        <a href="{% url 'default_recipes' recipe.id %}" class="list-group-item list-group-item-action">
+                            <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
+                            <img src='{{recipe.image_url}}'style="height: auto;width: fit-content;" ></img>'
+                            <p class="list-group-item-text">Published by: admin</p>
+                        </a>
+                    {% endfor %}
+                {% else %}
+                    <p>No recipes available.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+-->
+<div class="row mt-5">
+    <div class="col-md-12">
+        <h2>Default Recipes</h2>
+        <div class="card-columns" style="display: flex;flex-wrap: wrap;justify-content:space-around;">
+            {% if recipes %}
+                {% for recipe in recipes %}
+                        <div class="card">
+                            <img src="{{ recipe.image_url }}" class="card-img-top" alt="{{ recipe.name }}" style="height: 200px; object-fill: cover;">
+                            <div class="card-body">
+                                <h4 class="card-title">{{ recipe.name }}</h4>
+                                <p class="card-text">Published by: admin</p>
+                                <a href="{% url 'default_recipes' recipe.id %}" class="btn btn-primary">View Recipe</a>
+                            </div>
+                        </div>
+                {% endfor %}
+            {% else %}
+                <p>No default recipes available.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</div>
+{% endblock body %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Your Recipes{% endblock title %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Your Recipes</h1>
+            <p>These are the recipes you've created.</p>
+            <a href="{% url 'create_recipe' %}" class="btn btn-primary">Create New Recipe</a>
+            <a href="{% url 'home' %}" class="btn btn-outline-primary">Back to Home</a>
+        </div>
+    </div>
+    
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h2>Your Recipes</h2>
+            <div class="card-columns">
+                {% if recipes %}
+                    {% for recipe in recipes %}
+                        <div class="card">
+                            <img src="{{ recipe.image_url }}" class="card-img-top" alt="{{ recipe.name }}" style="height: 200px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ recipe.name }}</h5>
+                                <p class="card-text">Published by: {{ recipe.publisher.username }}</p>
+                                <a href="{% url 'recipe_detail' recipe.id %}" class="btn btn-primary">View Recipe</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>You haven't created any recipes yet.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

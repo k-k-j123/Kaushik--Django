@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Create Recipe | {% endblock title %}
+{% block body %}
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Create New Recipe</div>
+                <div class="card-body">
+                    <form method="POST" action="{% url 'create_recipe' %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="id_name" class="form-label">Recipe Name</label>
+                            <input type="text" id="id_name" name="name" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_ingredients" class="form-label">Ingredients</label>
+                            <textarea id="id_ingredients" name="ingredients" class="form-control"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_procedure" class="form-label">Procedure</label>
+                            <textarea id="id_procedure" name="procedure" class="form-control"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_image_url" class="form-label">Image URL</label>
+                            <input type="text" id="id_image_url" name="image_url" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Create Recipe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

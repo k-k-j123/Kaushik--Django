@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% block title %}Register | {% endblock title %}
+{% block body %}
+{% if messages %}
+        <div class="container mt-3">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        </div>
+{% endif %}
+
+<div class="container" >
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="wrapper">
+                <h2>Register</h2>
+                <form method="POST" action='/register/'>
+                    {% csrf_token %}
+                    <div class="input-box">
+                        <input type="text" id="Username" name="Username" placeholder="Enter your Username" required>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" id='password1' name='password1' placeholder="Enter your password" required>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" id='password2' name='password2' placeholder="Enter your password again" required>
+                    </div>
+                    <div class="input-box button">
+                        <input type="submit" value="Register">
+                    </div>
+                    <div class="text">
+                        <h3>already have an account? <a href="{% url 'login'%}">login now</a></h3>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Add your custom styles here */
+.wrapper {
+    background: #fff;
+    padding: 34px;
+    border-radius: 6px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    margin-top:30px;
+}
+
+.wrapper h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    position: relative;
+}
+
+.wrapper h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 28px;
+    border-radius: 12px;
+    background: #4070f4;
+}
+
+.wrapper form {
+    margin-top: 30px;
+}
+
+.wrapper form .input-box {
+    height: 52px;
+    margin: 18px 0;
+}
+
+.wrapper form .input-box input {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    padding: 0 15px;
+    font-size: 17px;
+    font-weight: 400;
+    color: #333;
+    border: 1.5px solid #C7BEBE;
+    border-bottom-width: 2.5px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.wrapper form .input-box input:focus,
+.wrapper form .input-box input:valid {
+    border-color: #4070f4;
+}
+
+.wrapper form .input-box.button input {
+    color: #fff;
+    letter-spacing: 1px;
+    border: none;
+    background: #4070f4;
+    cursor: pointer;
+}
+
+.wrapper form .input-box.button input:hover {
+    background: #0e4bf1;
+}
+
+.wrapper form .text h3 {
+    color: #333;
+    width: 100%;
+    text-align: center;
+}
+
+.wrapper form .text h3 a {
+    color: #4070f4;
+    text-decoration: none;
+}
+
+.wrapper form .text h3 a:hover {
+    text-decoration: underline;
+}
+</style>
+
+{% endblock body %}
