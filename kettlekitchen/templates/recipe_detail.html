@@ -1,17 +1,43 @@
 {% extends "base.html" %}
-{% block title %}Recipe Detail | {% endblock title %}
+
+{% block title %}Recipe Detail | {{ recipe.name }}{% endblock title %}
+
+{% block extra_head %}
+<style>
+    .card {
+        font-size: 18px; /* Adjust font size as needed */
+    }
+
+    .card-title {
+        font-size: 24px; /* Larger title size */
+        margin-bottom: 1rem; /* Add spacing below titles */
+    }
+
+    .card-text {
+        font-size: 20px; /* Adjust text size */
+        line-height: 1.6; /* Increase line height for better readability */
+    }
+
+    .btn {
+        font-size: 16px; /* Larger button text */
+    }
+
+   
+</style>
+{% endblock extra_head %}
+
 {% block body %}
 <div class="container">
-    <div class="row justify-content-center mt-5">
+    <div class="row  mt-5">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ recipe.name }}</div>
+            <div class="card" style="width:80vw; display:flex; justify-content:center; padding:0; margin:0;">
+                <div class="card-header" style="font-size: 28px;">{{ recipe.name }}</div>
                 <div class="card-body">
-                    <h5 class="card-title">Ingredients</h5>
-                    <pre class="card-text">{{ recipe.ingredients }}</pre>
-                    <h5 class="card-title">Procedure</h5>
-                    <pre class="card-text">{{ recipe.procedure }}</pre>
-                    <p class="card-text">Published by: {{ recipe.publisher.username }}</p>
+                    <h3 class="card-title">Ingredients</h3>
+                    <pre class="card-text" style="font-size: 20px;">{{ recipe.ingredients }}</pre>
+                    <h3 class="card-title">Procedure</h3>
+                    <pre class="card-text" style="font-size: 20px;">{{ recipe.procedure }}</pre>
+                    <p class="card-text" style="font-size: 20px;">Published by: {{ recipe.publisher.username }}</p>
                     
                     <!-- Delete Button -->
                     <form method="post" action="{% url 'delete_recipe' recipe.id %}" class="mt-3">

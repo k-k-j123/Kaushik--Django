@@ -6,8 +6,8 @@
 {% endblock title %}
 
 {% block body %}
-<div class="container">
-    <div class="row">
+<div class="container my-5 ">
+    <div class="row" style="text-align:center;">
         <div class="col-md-12">
             <h1>Welcome, {{ request.user.username }}!</h1>
             <p>This is your home page. You can create and manage your recipes here.</p>
@@ -15,31 +15,9 @@
             <a href="{% url 'user_recipes' %}" class="btn btn-outline-primary">Your Recipes</a>
         </div>
     </div>
-    <!--
-    <div class="row mt-5">
-        <div class="col-md-12">
-            <h2>What we Like</h2>
-            <div class="list-group">
-                {% if recipes %}
-                    {% for recipe in recipes %}
-                        
-                        <a href="{% url 'default_recipes' recipe.id %}" class="list-group-item list-group-item-action">
-                            <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
-                            <img src='{{recipe.image_url}}'style="height: auto;width: fit-content;" ></img>'
-                            <p class="list-group-item-text">Published by: admin</p>
-                        </a>
-                    {% endfor %}
-                {% else %}
-                    <p>No recipes available.</p>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-</div>
--->
 <div class="row mt-5">
     <div class="col-md-12">
-        <h2>Default Recipes</h2>
+        <h2 style="padding: 0px 0px 20px 25px;">Default Recipes</h2>
         <div class="card-columns" style="display: flex;flex-wrap: wrap;justify-content:space-around;">
             {% if recipes %}
                 {% for recipe in recipes %}
@@ -59,4 +37,6 @@
     </div>
 </div>
 </div>
+
+
 {% endblock body %}
